@@ -1,0 +1,27 @@
+@model Test_EduHub.Models.Domain.EnquiryViewModel
+
+<h2>Response</h2>
+
+<form asp-controller="Enquiry" asp-action="ViewDetailedEnquiry" asp-route-id="@Model.EnquiryId" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label>Name :</label> @Model.FirstName @Model.LastName
+    <br /><br />
+    <label>Message :</label> @Model.Message
+    <br /><br />
+    <label>Subject :</label> @Model.Subject
+    <br /><br />
+    <label>Category :</label> @Model.CategoryName
+    <br /><br />
+
+    <div class="form-group">
+        <label asp-for="Response" class="control-label">Response :</label>
+        <textarea asp-for="Response" class="form-control"></textarea>
+        <span asp-validation-for="Response" class="text-danger"></span>
+    </div>
+
+    <br /><br />
+    <div class="form-group">
+        <input type="submit" value="Submit Response" class="btn btn-primary" />
+    </div>
+</form>

@@ -25,6 +25,7 @@ builder.Services.AddScoped<IUserService, UserServiceRepository>();
 builder.Services.AddScoped<ICourseService, CourseServiceRepository>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentServiceRepository>();
 builder.Services.AddScoped<IMaterialService, MaterialServiceRepository>();
+builder.Services.AddScoped<IEnquiryService, EnquiryServiceRepository>();
 // builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 // {
 //     options.LoginPath = "/user/login";

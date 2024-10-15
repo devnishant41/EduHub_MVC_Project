@@ -1,0 +1,72 @@
+@model IEnumerable<Test_EduHub.Models.Domain.EnquiryViewModel>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<h4>List of All Enquiries</h4>
+<div class="container">
+    <div class="row">
+        @foreach (var enquiry in Model)
+        {
+            <div class="col-md-4 p-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@enquiry.Title</h5>
+                        <p class="card-text">
+                            <strong>Subject:</strong> @enquiry.Subject
+                        </p>
+                        <p class="card-text">
+                            <strong>Message:</strong>
+                            @if (enquiry.Message.Length > 30)
+                            {
+                                @enquiry.Message.Substring(0, Math.Min(50, enquiry.Message.Length))
+                                <span>...</span>
+                            }
+                            else
+                            {
+                                @enquiry.Message
+                            }
+                        </p>
+                        <p class="card-text">
+                            <strong>Date:</strong> @enquiry.EnquiryDate.ToString("yyyy-MM-dd")
+                        </p>
+                        <p class="card-text">
+                            <strong>Response:</strong> @enquiry.Response
+                        </p>
+                        <p class="card-text">
+                            <strong>Status:</strong> @enquiry.Status
+                        </p>
+                        <p class="card-text position-relative bottom-0 right-0">
+                            - @enquiry.FirstName @enquiry.LastName
+                        </p>
+                        <div class="text-right d-flex w-100 justify-content-end position-absolute bottom-0"
+                            style="margin-right: 14px; padding: 10px;">
+                            <a asp-action="ViewDetailedEnquiry" asp-route-id="@enquiry.EnquiryId" class="btn btn-link">
+                                Edit  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="text-right w-100 justify-content-end d-flex ">
+        <h6>
+            <a class="btn btn-link" asp-action="GetAllEnquiries">
+
+                Back to Enquiries
+            </a>
+        </h6>
+    </div>
+</div>
+
+<style>
+    .card-body {
+        height: 300px;
+        /* Set a fixed height for all cards */
+        overflow: hidden;
+        /* Hide any excess content */
+    }
+</style>

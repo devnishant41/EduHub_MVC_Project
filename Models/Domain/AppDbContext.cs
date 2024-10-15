@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Test_EduHub.Models.Domain;
 using Test_EduHub.Models.Domain.Enrollments;
+using Test_EduHub.Models.DTO;
 
 namespace Test_EduHub.Models
 {
@@ -21,15 +22,14 @@ namespace Test_EduHub.Models
         public virtual DbSet<Profile> Profiles { get; set; } = null!;
         public virtual DbSet<Request> Requests { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Enquiry> Enquiries { get; set; } = null!;
+        // public virtual DbSet<Feedback> Feedbacks { get; set; } = null!;
 
         //proc
         public DbSet<AllCoursesViewModel> AllCoursesViewModels {get;set;}
         public DbSet<CourseDetailsViewModel> courseDetailsViewModels {get;set;}
         public DbSet<EnrollmentViewModel> enrollmentViewModels {get;set;}
-
-
-
-
+        public DbSet<EnquiryViewModel> enquiryViewModels {get;set;}
 
     }
 }
