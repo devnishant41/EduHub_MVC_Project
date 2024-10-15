@@ -42,11 +42,11 @@ namespace Test_EduHub.Controllers
         [HttpPost]
         public IActionResult AddCourseMaterial(int id, Material material)
         {
-          
+
             material.Courseid = id;
             material.UploadDate = DateTime.Now;
             Console.WriteLine($"{material}");
-            
+
             if (ModelState.IsValid)
             {
                 Console.WriteLine($"IsValid");
@@ -58,26 +58,58 @@ namespace Test_EduHub.Controllers
             return View(material);
         }
 
+        [Route("educator/material/edit/{id}")]
+        public async Task<IActionResult> EditMaterial(int id)
+        {
+            Console.WriteLine($"material");
 
-        // public IActionResult GetCoursesWithMaterial(int id)
-        // {
-        //     // var course = _courseService.GetCourseById(id);
+            var material = _materialService.GetMaterialByMaterialId(id);
+            if (material == null)
+            {
+                return NotFound();
+            }
+            return View(material);
+        }
 
-        //     // if (course == null)
-        //     // {
-        //     //     return NotFound();
-        //     // }
+        [Route("educator/material/edit/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> EditMaterial(int id, Material material)
+        {
+            var oldmaterial = _materialService.GetMaterialByMaterialId(id);
+            material.Courseid = oldmaterial.Courseid;
+            material.UploadDate = oldmaterial.UploadDate;
+            material.ContentType = oldmaterial.ContentType;
 
-        //     // var materials = _materialService.GetMaterialByCourseId(id);
+            // if (ModelState.IsValid)
+            // {
+            await _materialService.UpdateMaterial(material);
+            TempData["SuccessMessage"] = "Material updated successfully.";
+            return RedirectToAction("CourseDetails", "Course", new { id = material.Courseid });
+            // }
+            return View(material);
+        }
 
-        //     // var viewModel = new CourseMaterialViewModel
-        //     // {
-        //     //     Course = course,
-        //     //     Materials = materials
-        //     // };
+        [HttpGet]
+        [Route("educator/material/delete/{id}")]
+        public async Task<IActionResult> DeleteMaterial(int id)
+        {
+            var material = _materialService.GetMaterialByMaterialId(id);
+            if (material == null)
+            {
+                return NotFound();
+            }
+            return View(material);
+        }
 
-        //     return View(viewModel);
-        // }
+        [HttpPost]
+        [Route("educator/material/delete/{id}")]
+        public async Task<IActionResult> DeleteMaterial(int id, Material material)
+        {
+            var oldmaterial = _materialService.GetMaterialByMaterialId(id);
+            _materialService.DeleteMaterial(id);
+            TempData["SuccessMessage"] = "Material deleted successfully.";
+            return RedirectToAction("CourseDetails", "Course", new { id = oldmaterial.Courseid });
+        }
 
     }
 }

@@ -1,6 +1,6 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Test_EduHub.Models.Combined.CourseMaterialViewModel
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @{
     ViewData["Title"] = "Course Details";
 }
@@ -60,7 +60,23 @@
                             <li class="list-group-item">
                                 <h5>@material.Title</h5>
                                 <p>@material.Description</p>
-                                <a href="@material.Url" target="_blank">View Material</a>
+                                <a href="@material.Url" target="_blank">@material.Url </a>
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "Educator")
+                                {
+                                    <div class="float-left mt-3  justify-content-center align-items-center">
+                                        <a asp-action="EditMaterial" asp-controller="Material" asp-route-id="@material.Id"
+                                            class=" me-1 fs-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                class="bi bi-pencil" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                        </a>
+                                        <a asp-action="DeleteMaterial" asp-controller="Material" asp-route-id="@material.Id"
+                                            class="m-lg-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                }
                             </li>
                         }
                     </ul>

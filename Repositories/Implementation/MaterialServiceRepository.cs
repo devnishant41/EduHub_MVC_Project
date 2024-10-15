@@ -22,7 +22,7 @@ namespace Test_EduHub.Repositories.Implementation
 
         public IEnumerable<Material> GetMaterialByCourseId(int id)
         {
-            return _context.Materials
+            return _context.Materials.AsNoTracking()
                   .Where(m => m.Courseid == id)
                  .ToList();
         }
@@ -43,5 +43,25 @@ namespace Test_EduHub.Repositories.Implementation
             _context.SaveChanges();
         }
 
+        public async Task UpdateMaterial(Material material)
+        {
+            _context.Materials.Update(material);
+            await _context.SaveChangesAsync();
+        }
+
+        public void  DeleteMaterial(int id)
+        {
+            var material =  GetMaterialByMaterialId(id);
+            if (material != null)
+            {
+                _context.Materials.Remove(material);
+                 _context.SaveChangesAsync();
+            }
+        }
+
+        public Material GetMaterialByMaterialId(int id)
+        {
+            return _context.Materials.AsNoTracking().FirstOrDefault(x => x.Id == id);
+        }
     }
 }

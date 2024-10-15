@@ -10,6 +10,12 @@ namespace Test_EduHub.Repositories.Abstract
     {
         IEnumerable<Material> GetMaterialByCourseId(int id);
 
+        Material GetMaterialByMaterialId(int id);
+
         void AddNewMaterial(int id,Material newMateial);
+
+        Task UpdateMaterial (Material material);
+
+        void DeleteMaterial (int id);
     }
 }
