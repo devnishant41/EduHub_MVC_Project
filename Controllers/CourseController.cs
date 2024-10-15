@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Test_EduHub.Models;
+using Test_EduHub.Models.Combined;
 using Test_EduHub.Models.Domain;
 using Test_EduHub.Repositories.Abstract;
 
@@ -16,9 +17,12 @@ namespace Test_EduHub.Controllers
     {
         private readonly ICourseService _courseservice;
 
-        public CourseController(ICourseService courseService)
+        private readonly IMaterialService _materialservice;
+
+        public CourseController(ICourseService courseService, IMaterialService materialService)
         {
             _courseservice = courseService;
+            _materialservice = materialService;
         }
 
         public IActionResult Index()
@@ -36,8 +40,23 @@ namespace Test_EduHub.Controllers
         [Route("course/coursedetails/{id}")]
         public IActionResult CourseDetails(int id)
         {
-            var data = _courseservice.GetCourseDetailsById(id);
-            return View(data);
+            var course = _courseservice.GetCourseDetailsById(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var materials = _materialservice.GetMaterialByCourseId(id);
+
+            var viewModel = new CourseMaterialViewModel
+            {
+                courseDetailsViewModel = course,
+                Materials = materials
+            };
+
+            return View(viewModel);
+
+
         }
 
         [HttpGet]

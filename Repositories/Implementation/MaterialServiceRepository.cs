@@ -7,9 +7,9 @@ using Test_EduHub.Repositories.Abstract;
 
 namespace Test_EduHub.Repositories.Implementation
 {
-    public class MaterialServiceRepository :IMaterialService
+    public class MaterialServiceRepository : IMaterialService
     {
-         private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public MaterialServiceRepository(AppDbContext context)
         {
@@ -17,5 +17,11 @@ namespace Test_EduHub.Repositories.Implementation
 
         }
 
+        public IEnumerable<Material> GetMaterialByCourseId(int id)
+        {
+            return _context.Materials
+                  .Where(m => m.Courseid == id)
+                 .ToList();
+        }
     }
 }
