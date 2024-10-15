@@ -1,0 +1,52 @@
+@model Test_EduHub.Models.Domain.SignupViewModel
+
+<div class="d-flex flex-column justify-content-center">
+    <div class="container d-flex justify-content-center align-items-center">
+        <form asp-action="SignupForm" method="post" class="container-fluid p-5 gap-3 w-50" enctype="multipart/form-data">
+            <div class="form-group gap-2">
+                <input asp-for="Username" class="form-control" placeholder="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="Firstname" class="form-control" placeholder="First Name" />
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="Lastname" class="form-control" placeholder="Last Name" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="MobileNumber" type="number" class="form-control" placeholder="Mobile Number" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <select asp-for="Role" class="form-control">
+                    <option value="">Select Role</option>
+                    <option value="Student">Student</option>
+                    <option value="Educator">Educator</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="ProfileImage" type="file" class="form-control" />
+                <span asp-validation-for="ProfileImage" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 w-100 text-center justify-content-center mx-auto">Sign Up</button>
+        </form>
+        <div>
+            <img src="~/images/autheticate/signup.jpg" alt="Educator" height="350">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

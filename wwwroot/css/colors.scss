@@ -1,0 +1,32 @@
+$blue: #0d6efd;
+$blue-100: lighten($blue, 10%);
+$blue-200: lighten($blue, 20%);
+$blue-300: lighten($blue, 30%);
+$blue-400: lighten($blue, 40%);
+$blue-500: $blue;
+$blue-600: darken($blue, 10%);
+$blue-700: darken($blue, 20%);
+$blue-800: darken($blue, 30%);
+$blue-900: darken($blue, 40%);
+
+$indigo: #6610f2;
+$indigo-100: lighten($indigo, 10%);
+$indigo-200: lighten($indigo, 20%);
+$indigo-300: lighten($indigo, 30%);
+$indigo-400: lighten($indigo, 40%);
+$indigo-500: $indigo;
+$indigo-600: darken($indigo, 10%);
+$indigo-700: darken($indigo, 20%);
+$indigo-800: darken($indigo, 30%);
+$indigo-900: darken($indigo, 40%);
+
+$purple: #6f42c1;
+$purple-100: lighten($purple, 10%);
+$purple-200: lighten($purple, 20%);
+$purple-300: lighten($purple, 30%);
+$purple-400: lighten($purple, 40%);
+$purple-500: $purple;
+$purple-600: darken($purple, 10%);
+$purple-700: darken($purple, 20%);
+$purple-800: darken($purple, 30%);
+$purple-900: darken($purple, 40%);

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+  @section Scripts {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var successMessage = '@TempData["SuccessMessage"]';
+                    if (successMessage) {
+                        Toastify({
+                            text: successMessage,
+                            duration: 3000,
+                            close: true,
+                            gravity: "top",
+                            position: "center",
+                            backgroundColor: "#4361ee",
+                            stopOnFocus: true
+                        }).showToast();
+                    }
+                });
+            </script>
+}
+<div class="container">
+
+    <div class="text-center">
+        <h1 class="display-6 fw-light p-4">Empower Your Future with Coding Skills </h1>
+
+        <p>With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to
+            a
+            wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.</p>
+    </div>
+
+    <div class=" d-flex  justify-content-center gap-4 mt-5">
+        <button class="bg-primary  rounded-2 ">
+            <a class="nav-link text-light" asp-area="" asp-controller="Autheticate" asp-action="LoginForm">Learn
+                More</a>
+        </button>
+        <button class="bg-primary  rounded-2 ">
+            <a class="nav-link text-light" asp-area="" asp-controller="Autheticate" asp-action="SignupForm">Book a
+                Demo</a>
+        </button>
+    </div>
+
+</div>

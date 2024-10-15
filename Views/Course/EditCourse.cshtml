@@ -1,0 +1,110 @@
+@model Test_EduHub.Models.Course
+
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Edit Course</h1>
+    <form asp-action="EditCourse" asp-controller="Course" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="Title" class="form-label">Course Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
+            <div class="invalid-feedback">
+                Please provide a course title.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="3"
+                required>@Model.Description</textarea>
+            <div class="invalid-feedback">
+                Please provide a course description.
+            </div>
+        </div>
+
+
+        @* <div class="mb-3">
+                <label asp-for="Categoryid" class="control-label">Category Name</label>
+                <select asp-for="Categoryid" class="form-control"
+                    asp-items="@(new SelectList(ViewBag.Categories, "Id", "CategoryName"))">
+                    <option value="">Select Category</option>
+                </select>
+                <span asp-validation-for="Categoryid" class="text-danger"></span>
+        </div> *@
+
+        <div class="mb-3">
+            <label for="CourseStartDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="CourseStartDate" name="CourseStartDate"
+                value="@Model.CourseStartDate.ToString("yyyy-MM-dd")" required>
+            <div class="invalid-feedback">
+                Please select a start date.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="CourseEndDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="CourseEndDate" name="CourseEndDate"
+                value="@Model.CourseEndDate.ToString("yyyy-MM-dd")" required>
+            <div class="invalid-feedback">
+                Please select an end date.
+            </div>
+        </div>
+
+
+        @{
+            var levels = new List<string> { "beginner", "intermediate", "advanced" };
+            var optionsHtml = new System.Text.StringBuilder();
+
+            foreach (var level in levels)
+            {
+                var isSelected = Model.Level == level ? "selected" : "";
+                optionsHtml.AppendFormat("<option value=\"{0}\" {1}>{2}</option>", level, isSelected, char.ToUpper(level[0]) +
+                level.Substring(1));
+            }
+        }
+
+        <div class="mb-3">
+            <label for="Level" class="form-label">Level</label>
+            <select class="form-select" id="Level" name="Level" required>
+                @Html.Raw(optionsHtml.ToString())
+            </select>
+            <div class="invalid-feedback">
+                Please select a course level.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="Price" name="Price" value="@Model.Price" step="0.01" required>
+            <div class="invalid-feedback">
+                Please provide a price.
+            </div>
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Bootstrap validation
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

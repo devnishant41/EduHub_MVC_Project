@@ -1,0 +1,75 @@
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<h3>Welcome... @HttpContextAccessor.HttpContext.Session.GetString("LoggedUserName") !! </h3>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var successMessage = '@TempData["SuccessMessage"]';
+            if (successMessage) {
+                Toastify({
+                    text: successMessage,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#4361ee",
+                    stopOnFocus: true
+                }).showToast();
+            }
+        });
+    </script>
+}
+@{
+    if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "Educator")
+    {
+        <div class="container border border-danger mt-5 p-2 ">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-sm-6 ">
+                    <ul class="list-group list-group-flush gap-3 fs-5 text-primary">
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Course" asp-action="GetAllCourses"
+                                class="text-decoration-none ">All available courses</a>
+                        </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Educator" asp-action="GetMyCourses"
+                                class="text-decoration-none">My Courses </a> </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Educator"
+                                asp-action="GetAllEnrollments" class="text-decoration-none ">Manage Enrollments </a>
+                        </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Educator"
+                                asp-action="GetAllEnquiries" class="text-decoration-none ">Enquires</a></li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Educator"
+                                asp-action="GetAllFeedbacks" class="text-decoration-none ">View Feedbacks</a></li>
+                    </ul>
+                </div>
+                <div class="col mx-3">
+                    <img src="~/images/Educator.png" alt="Educator" height="350">
+                </div>
+            </div>
+        </div>
+    }
+    else if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "Student")
+    {
+        <div class="container border border-danger mt-5 p-2 ">
+            <div class="row d-flex align-items-center justify-content-between">
+                <div class="col-sm-6 ">
+                    <ul class="list-group list-group-flush gap-3 fs-5 text-primary">
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Course" asp-action="GetAllCourses"
+                                class="text-decoration-none ">Courses Library</a>
+                        </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Course" asp-action="GetMyCourses"
+                                class="text-decoration-none">My Enrollments </a> </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Course"
+                                asp-action="GetAllEnrollments" class="text-decoration-none ">Enroll for New Course </a>
+                        </li>
+                        <li class="list-group-item text-decoration-none"> <a asp-controller="Course"
+                                asp-action="GetAllEnquiries" class="text-decoration-none ">Enquires</a></li>
+                        @* <li class="list-group-item text-decoration-none"> <a asp-controller="Course"
+                asp-action="GetAllFeedbacks" class="text-decoration-none ">Submit Enquiry</a></li> *@
+                    </ul>
+                </div>
+                <div class="col mx-3">
+                    <img src="~/images/Student.png" alt="Educator" height="350">
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,30 @@
+@model Test_EduHub.Models.Course
+
+<div class="container mt-5">
+    <h2>Course Details</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Title: @Model.Title</h3>
+            <p>Course Description: @Model.Description</p>
+            <p> Start Date: @Model.CourseStartDate</p>
+            <p> End Date: @Model.CourseEndDate</p>
+            <p>Category: @Model.Categoryid</p>
+            <p>Level: @Model.Level</p>
+        </div>
+        
+        <div class="col-sm-6">
+            <img src="~/images/course-image.jpg" alt="Course Image" height="200">
+            <div class="row mt-5 d-flex flex-column">
+                <div class="col-sm-6">
+                    <a asp-action="EditCourse" asp-controller="Course" asp-route-id="@Model.Id"
+                        class="btn btn-primary">Edit
+                        Course</a>
+                </div>
+                <div class="col-sm-6">
+                    <a asp-action="DeleteCourse" asp-controller="Course" asp-route-id="@Model.Id"
+                        class="btn btn-danger">Delete Course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

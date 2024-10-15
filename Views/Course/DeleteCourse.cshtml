@@ -1,0 +1,24 @@
+@model Test_EduHub.Models.Domain.CourseDetailsViewModel
+
+<div class="container">
+    <h3>Are you sure you want to delete this course?</h3>
+    <div>
+        <hr />
+        <div>
+            <p><b>Title:</b> @Html.DisplayFor(model => model.Title)</p>
+            <p><b>Level:</b> @Html.DisplayFor(model => model.Level)</p>
+            <p><b>Category:</b> @Html.DisplayFor(model => model.CategoryName)</p>
+            @* <p><b>Educator Name:</b> @Html.DisplayFor(model => model.EducatorName)</p> *@
+        </div>
+
+        <form asp-action="DeleteCourse" asp-controller="Course" method="post">
+            <input type="hidden" asp-for="Id" /> <!-- Assuming you have an Id property -->
+            <input type="hidden" name="__RequestVerificationToken" value="@Html.AntiForgeryToken().ToString()" />
+
+            <div class="form-actions no-color">
+                <a asp-action="GetMyCourses" class="btn btn-secondary">Back to List</a> |
+                <button type="submit" class="btn btn-danger">Delete</button> 
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@import "colors";
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+/*  login form */
+
+
+/* wwwroot/css/site.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; Full viewport height */
+}
+
+.login-form {
+  width: 30%; /* 30% of the viewport width */
+  min-width: 400px; 
+  height: 250px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.level {
+  text-transform: uppercase;
+}
+
+
+.cursor-pointer{
+  cursor: pointer;
+}
