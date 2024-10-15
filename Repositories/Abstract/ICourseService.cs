@@ -27,5 +27,11 @@ namespace Test_EduHub.Repositories.Abstract
         void EditCourse (Course course);
 
         Task DeleteCourseAsync (int id);
+
+
+        // student
+        IEnumerable<AllCoursesViewModel> GetEnrolledCoursesByStudentId(int id);
+
+
     }
 }

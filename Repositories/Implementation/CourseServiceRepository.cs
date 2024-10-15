@@ -83,53 +83,38 @@ namespace Test_EduHub.Repositories.Implementation
         {
             Console.WriteLine($"{course}");
             _context.Courses.Update(course);
-             _context.SaveChangesAsync();
-
-            // await _context.Database.ExecuteSqlInterpolatedAsync($@"
-            // EXEC sp_edit_course_byId 
-            //     {course.Id}, 
-            //     {course.Title}, 
-            //     {course.Description}, 
-            //     {course.Categoryid}, 
-            //     {course.CourseStartDate}, 
-            //     {course.CourseEndDate}, 
-            //     {course.Level}, 
-            //     {course.Price}");
-
-
-
-            //  var sql = "EXEC sp_edit_course_byId @Id, @Title, @Description, @CategoryId, @CourseStartDate, @CourseEndDate,@Level, @Price";
-            // await _context.Database.ExecuteSqlRawAsync(
-            //     sql,
-            //     new SqlParameter("@Id", course.Title),
-            //     new SqlParameter("@Title", course.Description),
-            //     new SqlParameter("@Description", course.Description),
-            //     new SqlParameter("@CategoryId", course.Categoryid),
-            //     new SqlParameter("@CourseStartDate", course.CourseStartDate),
-            //     new SqlParameter("@CourseEndDate", course.CourseEndDate),
-            //     new SqlParameter("@Level", course.Level),
-            //     new SqlParameter("@Price", course.Price)
-            // );
+            _context.SaveChangesAsync();
 
 
         }
 
         public async Task DeleteCourseAsync(int id)
-    {
-        try
         {
-            Console.WriteLine($"Deleting course with ID: {id}");
+            try
+            {
+                Console.WriteLine($"Deleting course with ID: {id}");
 
-            // Execute the stored procedure asynchronously
-            await _context.Database.ExecuteSqlInterpolatedAsync($"EXEC dbo.sp_delete_Course {id}");
+                // Execute the stored procedure asynchronously
+                await _context.Database.ExecuteSqlInterpolatedAsync($"EXEC dbo.sp_delete_Course {id}");
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                Console.WriteLine($"An error occurred while deleting the course: {ex.Message}");
+                // Consider logging the exception or rethrowing it
+            }
         }
-        catch (Exception ex)
+
+
+
+        //student get enrolled courses
+        public IEnumerable<AllCoursesViewModel> GetEnrolledCoursesByStudentId(int id)
         {
-            // Handle exceptions appropriately
-            Console.WriteLine($"An error occurred while deleting the course: {ex.Message}");
-            // Consider logging the exception or rethrowing it
+            return _context.AllCoursesViewModels.FromSqlInterpolated($"dbo.sp_Get_Enrolled_Courses {id}").ToList();
+
         }
-    }
+
+
 
     }
 }
