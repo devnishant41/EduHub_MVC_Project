@@ -13,6 +13,11 @@ namespace Test_EduHub.Models
         public string ContentType { get; set; } = null!;
         public int Courseid { get; set; }
 
-        public virtual Course Course { get; set; } = null!;
+        
+    public override string ToString()
+    {
+        return $"Id: {Id}, Title: {Title}, Description: {Description}, Url: {Url}, UploadDate: {UploadDate}, ContentType: {ContentType}, CourseId: {Courseid}";
+    }
+
     }
 }

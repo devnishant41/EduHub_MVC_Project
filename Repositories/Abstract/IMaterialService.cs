@@ -9,5 +9,7 @@ namespace Test_EduHub.Repositories.Abstract
     public interface IMaterialService
     {
         IEnumerable<Material> GetMaterialByCourseId(int id);
+
+        void AddNewMaterial(int id,Material newMateial);
     }
 }

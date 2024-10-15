@@ -1,0 +1,47 @@
+@model Test_EduHub.Models.Material
+
+@{
+    ViewData["Title"] = "Create Material";
+}
+
+<div class="container">
+    <h1>Create New Material</h1>
+
+    <form asp-action="AddCourseMaterial" asp-controller="Material" method="post" class="mt-4">
+        <div class="row">
+            <div class="col-md-6 gap-2  d-flex flex-column">
+                <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Url">URL</label>
+                    <input asp-for="Url" class="form-control" />
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ContentType">Content Type</label>
+                    <input asp-for="ContentType" class="form-control" />
+                    <span asp-validation-for="ContentType" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-2">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

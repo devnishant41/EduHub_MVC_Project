@@ -85,7 +85,6 @@ namespace Test_EduHub.Repositories.Implementation
             _context.Courses.Update(course);
             _context.SaveChangesAsync();
 
-
         }
 
         public async Task DeleteCourseAsync(int id)
