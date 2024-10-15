@@ -12,14 +12,14 @@ using Test_EduHub.Repositories.Abstract;
 namespace Test_EduHub.Controllers
 {
     public class EnrollmentController : Controller
-    {   
-        // private readonly IEnrollmentService _enrollmentService;
+    {
+        private readonly IEnrollmentService _enrollmentService;
 
-        // public EnrollmentController(IEnrollmentService enrollmentService)
-        // {
-        //     _enrollmentService = enrollmentService;
+        public EnrollmentController(IEnrollmentService enrollmentService)
+        {
+            _enrollmentService = enrollmentService;
 
-        // }
+        }
         public IActionResult Index()
         {
             return View();
@@ -28,9 +28,9 @@ namespace Test_EduHub.Controllers
         [Route("/student/newenrollment")]
         [HttpGet]
         public IActionResult CreateNewEnrollment()
-        {   
+        {
             Console.WriteLine($"here is course");
-            
+
             return View();
         }
         // [HttpPost]
@@ -52,10 +52,33 @@ namespace Test_EduHub.Controllers
         // }
 
 
-        // public IActionResult GetMyEnrollments()
-        // {
+        [HttpGet]
+        [Route("educator/enrollments")]
+        public IActionResult GetMyEnrollments()
+        {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+            var data = _enrollmentService.GetAllEnrollmentsByUserId(userId).ToList();
+            return View(data);
+        }
 
-        // }
+        [HttpGet]
+        [Route("educator/enrollments/update/{id}")]
+        public IActionResult UpdateEnrollmentStatus(int id)
+        {
+            var data = _enrollmentService.GetEnrollmentById(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        [Route("educator/enrollments/update/{id}")]
+        public IActionResult UpdateEnrollmentStatus(int id, string status)
+        {   
+            _enrollmentService.UpdateEnrollment(id, status);
+             TempData["SuccessMessage"] = "Enrollment Status Updated!";
+            return RedirectToAction("GetMyEnrollments","Enrollment");
+        }
+
+
 
 
     }

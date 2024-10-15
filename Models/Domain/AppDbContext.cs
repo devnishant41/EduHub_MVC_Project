@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Test_EduHub.Models.Domain;
+using Test_EduHub.Models.Domain.Enrollments;
 
 namespace Test_EduHub.Models
 {
@@ -24,6 +25,7 @@ namespace Test_EduHub.Models
         //proc
         public DbSet<AllCoursesViewModel> AllCoursesViewModels {get;set;}
         public DbSet<CourseDetailsViewModel> courseDetailsViewModels {get;set;}
+        public DbSet<EnrollmentViewModel> enrollmentViewModels {get;set;}
 
 
 
