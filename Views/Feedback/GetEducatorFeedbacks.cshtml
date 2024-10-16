@@ -1,0 +1,45 @@
+@model IEnumerable<Test_EduHub.Models.Domain.AllFeedbackModel>
+
+<h3>My Courses Feedbacks</h3>
+
+ <style>
+        .count-circle {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .card {
+            height:150px;
+            position: relative;
+            margin-bottom: 20px; /* Space between cards */
+        }
+    </style>
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var feedback in Model)
+        {
+            <div class="col-md-4 cardmain mt-1 ">
+                <div class="card border-primary shadow">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@feedback.Title</h5>
+                        <p class="card-text text-secondary">Category: @feedback.CategoryName</p>
+                    </div>
+                    <a asp-action="DetailedFeedback" asp-controller="Feedback" asp-route-id="@feedback.CourseId">
+
+                    <div class="count-circle bg-primary text-white">@feedback.FeedbackCount</div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

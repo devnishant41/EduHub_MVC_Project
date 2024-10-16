@@ -1,0 +1,19 @@
+@model Test_EduHub.Models.Domain.EnquiryViewModel
+
+<h4>Delete Enquiry</h4>
+
+<h5>Are you sure you want to delete this enquiry?</h5>
+
+<div>
+    <h6>Course Name: @Model.Title</h6>
+    <h6>Subject: @Model.Subject</h6>
+    <h6>Message: @Model.Message</h6>
+    <h6>Status: @Model.Status</h6>
+    <h6>Date: @Model.EnquiryDate.ToString("yyyy-MM-dd")</h6>
+</div>
+
+<form asp-action="DeleteEnquiry">
+    <input type="hidden" asp-for="EnquiryId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="GetStudentEnquiries" class="btn btn-default">Cancel</a>
+</form>

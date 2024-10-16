@@ -41,8 +41,8 @@
                     else if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "Student")
                     {
                          <div class="d-flex justify-content-end">
-                            <a asp-action="RaiseEnquiry" asp-controller="Enquiry" asp-route-id="@course.Id"
-                                class="btn btn-primary me-2">Raise Enquiry</a>
+                            <a asp-action="SubmitFeedback" asp-controller="Feedback" asp-route-id="@course.Id"
+                                class="btn btn-primary me-2">Submit Feedback</a>
                            
                         </div>
                     }

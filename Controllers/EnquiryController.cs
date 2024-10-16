@@ -29,7 +29,7 @@ namespace Test_EduHub.Controllers
             var enquiries = _enquiryService.GetAllEnquiries(userId);
             return View(enquiries);
         }
-        
+
         [Route("educator/enquiries/pastenquiries")]
         [HttpGet]
         public IActionResult GetPastEnquiries()
@@ -47,29 +47,30 @@ namespace Test_EduHub.Controllers
             return View(enquiries);
         }
 
-         [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("educator/enquiries/{id}")]
         public IActionResult ViewDetailedEnquiry(int id, Enquiry enquiry)
-        {   
-             var enquiries = _enquiryService.GetEnquiryById(id);
+        {
+            var enquiries = _enquiryService.GetEnquiryById(id);
             //  enquiry.EnquiryDate = enquiries.EnquiryDate;
             //  enquiry.EnquiryId = enquiries.EnquiryId;
-             enquiries.Status = "Closed";
-             enquiries.Response = enquiry.Response;
+            enquiries.Status = "Closed";
+            enquiries.Response = enquiry.Response;
 
-             Console.WriteLine($"{enquiries}");
-             Console.WriteLine($"{enquiry}");
-             
-            
+            Console.WriteLine($"{enquiries}");
+            Console.WriteLine($"{enquiry}");
+
+
             if (id != enquiries.EnquiryId)
-            {   System.Console.WriteLine("in nto found");
+            {
+                System.Console.WriteLine("in nto found");
                 return NotFound();
             }
 
             // if (ModelState.IsValid)
             // {
-                _enquiryService.UpdateEnquiry(enquiries);
+            _enquiryService.UpdateEnquiry(enquiries);
             // }
             // return View(enquiries);
             return RedirectToAction(nameof(GetAllEnquiries));
@@ -79,51 +80,71 @@ namespace Test_EduHub.Controllers
 
 
         // GET: Enquiries/Create
-        public IActionResult Create()
+        [Route("student/course/enquiry/{id}")]
+        public IActionResult RaiseEnquiry(int id)
         {
-            return View();
+            var enquiry = _enquiryService.GetEnquiryById(id);
+            string coursename = _enquiryService.GetCourseName(id);
+            ViewBag.CourseName = coursename;
+            return View(new Enquiry { CourseId = id });
         }
 
         // POST: Enquiries/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("UserId,CourseId,Subject,Message,EnquiryDate,Status,Response")] Enquiry enquiry)
+        [Route("student/course/enquiry/{id}")]
+        public IActionResult RaiseEnquiry(int id, Enquiry enquiry)
         {
-            if (ModelState.IsValid)
+            Enquiry newEnquiry = new Enquiry
             {
-                _enquiryService.CreateEnquiry(enquiry);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(enquiry);
+                UserId = Convert.ToInt32(HttpContext.Session.GetString("UserId")),
+                CourseId = id,
+                Subject = enquiry.Subject,
+                Message = enquiry.Message,
+                EnquiryDate = DateTime.Now,
+                Status = "Open"
+            };
+            _enquiryService.CreateEnquiry(newEnquiry);
+            TempData["SuccessMessage"] = "Enquiry Raised Successfully!";
+            return RedirectToAction("CourseDetails", "Course", new { id = newEnquiry.CourseId });
+
         }
 
-        // GET: Enquiries/Edit/5
-        public IActionResult Edit(int id)
+        [Route("student/myenquiries")]
+        public IActionResult GetStudentEnquiries(int id)
         {
-            var enquiry = _enquiryService.GetEnquiryById(id);
-            return View(enquiry);
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+            var enquiries = _enquiryService.GetEnquiriesByStudent(userId);
+            return View(enquiries);
+        }
+        [Route("student/myenquiries/history")]
+        public IActionResult GetPastStudentEnquiries(int id)
+        {
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+            var enquiries = _enquiryService.GetPastEnquiriesByStudent(userId);
+            return View(enquiries);
         }
 
 
-        
+
 
         // POST: Enquiries/Edit/5
-       
+
 
         // GET: Enquiries/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult DeleteEnquiry(int id)
         {
-            var enquiry = _enquiryService.GetEnquiryById(id);
+            var enquiry = _enquiryService.GetDetailedEnquiry(id);
             return View(enquiry);
         }
 
         // POST: Enquiries/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteEnquiry")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteEnquiry(int id,Enquiry enquiry)
         {
             _enquiryService.DeleteEnquiry(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(GetStudentEnquiries));
         }
     }
 }

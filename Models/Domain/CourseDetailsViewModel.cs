@@ -19,5 +19,7 @@ namespace Test_EduHub.Models.Domain
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public int UserId { get; set; } 
+
+        // public int StudentId { get; set; }
     }
 }

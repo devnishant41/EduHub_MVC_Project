@@ -1,0 +1,25 @@
+@model IEnumerable<Test_EduHub.Models.Domain.DetailedFeedbackModel>
+
+
+<h3>Feedbacks for Course  </h3>
+
+<div class="container mt-5">
+    @foreach (var feedback in Model)
+    {
+        <div class="list-group-item w-100 mb-3">
+            <div class="d-flex justify-content-between">
+                <h5 class="mb-1">@feedback.Feedback</h5>
+                <small>@feedback.Date.ToString("MM/dd/yyyy")</small>
+            </div>
+            @* <p class="mb-1">@feedback.Feedback</p> *@
+            <small> - By @feedback.FirstName @feedback.LastName</small>
+            <div class="text-right d-flex justify-content-end">
+                <a asp-action="DeleteFeedback" asp-controller="Feedback" asp-route-id="@feedback.FeedbackId" class="btn btn-danger btn-sm">
+                     <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </div>
+        </div>
+    }
+
+     <a asp-action="MyCourse" asp-action="GetEducatorFeedbacks" asp-controller="Feedback">Back to Courses</a>
+</div>

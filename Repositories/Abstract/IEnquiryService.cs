@@ -12,6 +12,9 @@ namespace Test_EduHub.Repositories.Abstract
 
         IEnumerable<EnquiryViewModel> GetAllEnquiries(int id);
         IEnumerable<EnquiryViewModel> GetPastEnquiries(int id);
+        IEnumerable<EnquiryViewModel> GetEnquiriesByStudent(int id);
+        IEnumerable<EnquiryViewModel> GetPastEnquiriesByStudent(int id);
+        string GetCourseName(int id);
 
         EnquiryViewModel GetDetailedEnquiry(int id);
         Enquiry GetEnquiryById(int id);

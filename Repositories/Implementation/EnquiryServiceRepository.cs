@@ -31,6 +31,20 @@ namespace Test_EduHub.Repositories.Implementation
         {
             return _context.enquiryViewModels.FromSqlInterpolated($"dbo.sp_get_detailed_enquiry {id}").AsEnumerable().FirstOrDefault();
         }
+
+        public IEnumerable<EnquiryViewModel> GetEnquiriesByStudent(int id)
+        {
+            return _context.enquiryViewModels.FromSqlInterpolated($"dbo.sp_get_enquiriesbyStudent {id}").ToList();
+
+        }
+        public IEnumerable<EnquiryViewModel> GetPastEnquiriesByStudent(int id)
+        {
+            return _context.enquiryViewModels.FromSqlInterpolated($"dbo.sp_get_Past_enquiriesbyStudent {id}").ToList();
+
+        }
+
+
+
         public Enquiry GetEnquiryById(int id)
         {
             return _context.Enquiries.Find(id);
@@ -56,6 +70,11 @@ namespace Test_EduHub.Repositories.Implementation
                 _context.Enquiries.Remove(enquiry);
                 _context.SaveChanges();
             }
+        }
+
+        public string GetCourseName(int id)
+        {
+            return _context.Courses.FirstOrDefault(x => x.Id == id).Title;
         }
 
 

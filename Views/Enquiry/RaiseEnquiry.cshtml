@@ -1,0 +1,22 @@
+@model Test_EduHub.Models.DTO.Enquiry
+
+<h2>Raise Enquiry</h2>
+
+<form method="post" asp-action="RaiseEnquiry" asp-controller="Enquiry" >
+     <div class="form-group mt-2">
+        <label>Course Name </label> : @ViewBag.CourseName
+    </div>
+    <div class="form-group mt-3">
+        <label asp-for="Subject">Subject:</label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Message">Message:</label>
+        <textarea asp-for="Message" class="form-control"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary mt-3">Raise Enquiry</button>
+</form>
+
