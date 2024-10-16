@@ -12,11 +12,13 @@ namespace Test_EduHub.Repositories.Abstract
     {
         // Enrollment GetEnrollmentById(int id);
         IEnumerable<EnrollmentViewModel> GetAllEnrollmentsByUserId(int id);
-        void AddEnrollment(Enrollment enrollment);
         Enrollment GetEnrollmentById(int id);
-
-        void UpdateEnrollment(int id,string  status);
+        void UpdateEnrollment(int id, string status);
         // void UpdateEnrollment(Enrollment enrollment);
         // void DeleteEnrollment(int id);
+        void CreateEnrollment(Enrollment enrollment);
+
+        IEnumerable<PreviousEnrollmentModel>  GetPreviousEnrollment(int id);
+
     }
 }

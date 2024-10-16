@@ -1,0 +1,53 @@
+@model IEnumerable<Test_EduHub.Models.Domain.PreviousEnrollmentModel>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<h4>List of Previous Enrollments</h4>
+<div class="container">
+    <div class="row">
+        @foreach (var enrollment in Model)
+        {
+            <div class="col-md-4 p-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Enrollment #@enrollment.Id</h5>
+                        <p class="card-text">
+                            <strong>Student Name:</strong> @enrollment.FirstName @enrollment.LastName
+                        </p>
+                        <p class="card-text">
+                            <strong>Course Name:</strong> @enrollment.Title
+                        </p>
+                        <p class="card-text">
+                            <strong>Category:</strong> @enrollment.CategoryName
+                        </p>
+                        <p class="card-text">
+                            <strong>Status:</strong> @enrollment.Status
+                        </p>
+                      
+                     
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="text-right w-100 justify-content-end d-flex ">
+        <h6>
+            <a class="btn btn-link" asp-action="Dashboard" asp-controller="Dashboard">
+
+                Back to Dashboard
+            </a>
+        </h6>
+    </div>
+</div>
+
+<style>
+    .card-body {
+        height: 250px;
+        /* Set a fixed height for all cards */
+        overflow: hidden;
+        /* Hide any excess content */
+    }
+</style>

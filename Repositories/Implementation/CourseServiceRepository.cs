@@ -42,12 +42,14 @@ namespace Test_EduHub.Repositories.Implementation
             var course = _context.Courses.AsNoTracking().FirstOrDefault(c => c.Id == id);
             return course;
         }
+        public IEnumerable<Course> GetAllCoursesList()
+        {
+            return _context.Courses.ToList();
+        }
 
         public IEnumerable<AllCoursesViewModel> GetAllCourses()
         {
             return _context.AllCoursesViewModels.FromSqlInterpolated($"dbo.sp_Get_All_Courses").ToList();
-
-
         }
 
         public void AddCourse(Course course)
@@ -113,6 +115,12 @@ namespace Test_EduHub.Repositories.Implementation
 
         }
 
+
+        public void CreateEnrollment(Enrollment enrollment)
+        {
+            _context.Enrollments.Add(enrollment);
+            _context.SaveChanges();
+        }
 
 
     }

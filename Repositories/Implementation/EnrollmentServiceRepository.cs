@@ -18,11 +18,13 @@ namespace Test_EduHub.Repositories.Implementation
         {
             _context = context;
         }
-        public void AddEnrollment(Enrollment enrollment)
+        public void CreateEnrollment(Enrollment enrollment)
         {
             _context.Enrollments.Add(enrollment);
             _context.SaveChanges();
         }
+
+       
 
         public IEnumerable<EnrollmentViewModel> GetAllEnrollmentsByUserId(int id)
         {
@@ -34,6 +36,11 @@ namespace Test_EduHub.Repositories.Implementation
         public Enrollment GetEnrollmentById(int id)
         {
             return _context.Enrollments.Find(id);
+        }
+
+        public IEnumerable<PreviousEnrollmentModel> GetPreviousEnrollment(int id)
+        {
+            return _context.previousEnrollmentModels.FromSqlInterpolated($"dbo.sp_get_past_Enrollments {id} ").ToList();
         }
 
         public void UpdateEnrollment(int id,string status)

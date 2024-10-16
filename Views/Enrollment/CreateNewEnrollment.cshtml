@@ -1,18 +1,42 @@
-@* @model Test_EduHub.Models.Domain.EnrollmentViewModel
+@model Test_EduHub.Models.Domain.CreateEnrollmentViewModel
+
+<div class="d-flex justify-content-between">
+
+    <h2>Create New Enrollment</h2>
+
+    <div class="text-right justify-content-end  ">
+        <h6>
+            <a class="btn btn-link" asp-action="GetPreviousEnrollments" asp-controller="Enrollment">
+                Enrollment History
+            </a>
+        </h6>
+    </div>
+
+</div>
 
 <form asp-action="CreateNewEnrollment">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="EnrollmentDate" class="control-label"></label>
-        <input asp-for="EnrollmentDate" class="form-control" />
-        <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+    <div class="form-horizontal mt-3">
+        <div class="form-group">
+            <label asp-for="SelectedCourseId" class="control-label">Select Course</label>
+
+            <select asp-for="SelectedCourseId" class="form-control">
+                @foreach (var course in Model.Courses)
+                {
+                    <option value="@course.Id">@course.Title</option>
+                }
+            </select>
+
+            <span asp-validation-for="SelectedCourseId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="CourseId" class="control-label"></label>
-        <select asp-for="CourseId" asp-items="Model.Courses" class="form-control"></select>
-        <span asp-validation-for="CourseId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form> *@
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -13,8 +13,8 @@ namespace Test_EduHub.Repositories.Abstract
         IEnumerable<Category> GetAllCategories();
 
         IEnumerable<AllCoursesViewModel> GetAllCourses();
+        IEnumerable<Course> GetAllCoursesList();
         Course GetCourseById(int id);
-
 
         void AddCourse(Course course);
 
