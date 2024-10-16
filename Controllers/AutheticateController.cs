@@ -58,12 +58,16 @@ namespace Test_EduHub.Controllers
                 {
                     Console.WriteLine($"login success");
                     string loggedUserName = _userService.GetLoggedInUserName(user.Id);
+                    string FullName = _userService.GetFullName(user.Id);
+                    string profileImagePath = _userService.GetProfileImage(user.Id);
                     Console.WriteLine($"username is {loggedUserName}");
 
                     HttpContext.Session.SetString("Username", user.Username);
                     HttpContext.Session.SetString("LoggedUserName", loggedUserName);
                     HttpContext.Session.SetString("UserId", user.Id.ToString());
                     HttpContext.Session.SetString("Role", user.Role);
+                    HttpContext.Session.SetString("ProfileImage", profileImagePath);
+                    HttpContext.Session.SetString("FullName", FullName);
                     TempData["SuccessMessage"] = "Login successful!";
                     if (user.Role == "Student")
                     {

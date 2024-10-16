@@ -40,6 +40,17 @@ namespace Test_EduHub.Repositories.Implementation
 
             return firstName;
         }
+        public string GetFullName(int userId)
+        {
+            var firstName = _context.Profiles.Where(u => u.UserId == userId).FirstOrDefault().Firstname;
+            var LastName = _context.Profiles.Where(u => u.UserId == userId).FirstOrDefault().Lastname;
+            if (firstName == null)
+            {
+                return "User";
+            }
+
+            return firstName + " " + LastName;
+        }
 
         public async Task RegisterUser(SignupViewModel model, string profileImageFileName)
         {
@@ -55,6 +66,17 @@ namespace Test_EduHub.Repositories.Implementation
                 new SqlParameter("@mobileNumber", model.MobileNumber),
                 new SqlParameter("@ProfileImage", profileImageFileName)
             );
+        }
+
+        public string GetProfileImage(int id)
+        {
+            return _context.Profiles.FirstOrDefault(x => x.UserId == id).ProfileImage;
+        }
+
+
+        public ProfileViewModel GetUserProfile(int id)
+        {
+              return _context.profileViewModels.FromSqlInterpolated($"dbo.sp_GetUserProfile {id}").AsEnumerable().FirstOrDefault();
         }
     }
 }

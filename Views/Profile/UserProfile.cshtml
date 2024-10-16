@@ -1,0 +1,139 @@
+@model Test_EduHub.Models.Domain.ProfileViewModel
+<style>
+    body {
+        background-color: #f0f8ff;
+        /* Light background for contrast */
+    }
+
+    .profile-sidebar {
+        padding: 20px;
+        background-color: #ffffff;
+        /* White background for sidebar */
+        border: 1px solid #007bff;
+        /* Primary blue border */
+        border-radius: 10px;
+    }
+
+    .profile-userpic {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-userpic img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid #007bff;
+        /* Primary blue border around image */
+    }
+
+    .profile-usertitle {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-usertitle-name {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff;
+        /* Primary blue text */
+    }
+
+    .profile-usertitle-role {
+        font-size: 18px;
+        color: #666;
+    }
+
+    .profile-content {
+        padding: 20px;
+    }
+
+    .list-group {
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .badge {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px;
+        border-radius: 10px;
+        /* Remove border radius to make badges rectangular */
+        margin-right: 10px;
+        border: 1px solid #007bff;
+        /* Add border to badges */
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+
+                    <img src="~/images/profileImages/@Model.ProfileImage" alt="Profile Image" class="img-responsive">
+
+
+                    <div class="default-profile-image">
+                        <i class="fa fa-user"></i>
+                    </div>
+
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @Model.FirstName @Model.LastName
+                    </div>
+                    <div class="profile-usertitle-role">
+                        @Model.Role
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="profile-content">
+                <h2 style="font-weight: bold;">Profile Information</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge" style="border-radius: 0;">Username:</span> @Model.Username
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge" style="border-radius: 0;">Email:</span> @Model.Email
+                            </li>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge" style="border-radius: 0;">Mobile Number:</span> @Model.MobileNumber
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge" style="border-radius: 0;">Profile Completed:</span>
+                                @(Model.ProfileCompleted ? "Yes" : "No")
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-end mt-3"> <!-- Align button to the right -->
+                    <button class="btn btn-primary" style="border-radius: 5px;">
+                        @* <a class=" nav-link text-white" asp-controller="Authenticate" asp-action="Logout"
+                            >Logout</a> *@
+
+                        <a class="nav-link text-light fw-" asp-area="" asp-controller="Autheticate" style="text-decoration: none;"
+                        asp-action="Logout">Logout
+                        </a>
+                    </button>
+
+                    @* <button class="rounded-3 nav-item px-3 py-0 hover">
+                        </button> *@
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,8 +11,13 @@ namespace Test_EduHub.Repositories.Abstract
     {
         User GetUserByUsernameAndPassword(string username, string password);
         string GetLoggedInUserName(int userId);
+         string GetFullName(int userId);
 
         Task RegisterUser(SignupViewModel model, string profileImageFileName);
+
+        string GetProfileImage (int id);
+
+        ProfileViewModel GetUserProfile(int id);
 
 
     }

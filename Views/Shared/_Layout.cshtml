@@ -17,9 +17,37 @@
     <link rel="stylesheet" href="~/Test_EduHub.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .rounded-circle {
+            border-radius: 50%;
+            border: 2px solid dark;
+            /* Optional */
+            object-fit: cover;
+        }
+
+        .username-role {
+            position: relative;
+            display: inline-block;
+            fontsize: 1.2em;
+        }
+
+        .role {
+            position: absolute;
+
+            /* Positions the role relative to the parent paragraph */
+            bottom: -14px;
+            /* Aligns to the bottom */
+            right: 0;
+            /* Aligns to the right */
+            font-size: 0.9em;
+            /* Optional: makes the role text smaller */
+            color: #555;
+            /* Optional: changes the color of the role text */
+        }
+    </style>
 
 </head>
 
@@ -54,25 +82,56 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto d-flex gap-3">
                         @if (HttpContextAccessor.HttpContext.Session.GetString("Username") != null)
                         {
 
                             @if (ViewContext.RouteData.Values["controller"].ToString() != "Dashboard")
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard"
+                                        asp-action="Dashboard">Dashboard</a>
+                                </li>
 
-                                <button class="rounded-3 nav-item px-3 py-0 hover">
-                                    <a class="nav-link text-dark fw-" asp-area="" asp-controller="Dashboard"
-                                        asp-action="Dashboard">Dashboard
-                                    </a>
-                                </button>
+                                @* <button class="rounded-3 nav-item px-3 py-0 hover btn-sm">
+                        <a class="nav-link text-dark " asp-area="" asp-controller="Dashboard"
+                        asp-action="Dashboard">Dashboard
+                        </a>
+                        </button> *@
                             }
-                            <button class="rounded-3 nav-item px-3 py-0 hover">
-                                <a class="nav-link text-dark fw-" asp-area="" asp-controller="Autheticate"
-                                    asp-action="Logout">Logout
-                                </a>
-                            </button>
+                        }
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto d-flex gap-3">
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("Username") != null)
+                        {
+
+                            @* @if (ViewContext.RouteData.Values["controller"].ToString() != "Dashboard")
+                        {
+
+                        <button class="rounded-3 nav-item px-3 py-0 hover btn-sm">
+                        <a class="nav-link text-dark " asp-area="" asp-controller="Dashboard"
+                        asp-action="Dashboard">Dashboard
+                        </a>
+                        </button>
+                        } *@
+                            <p class="username-role ">
+                                <span class="fw-bolder mb-1 fs-5">
+                                    @HttpContextAccessor.HttpContext.Session.GetString("FullName")
+                                </span>
+                                <span class="role mt-1">@HttpContextAccessor.HttpContext.Session.GetString("Role")</span>
+                            </p>
+                            @* <button class="rounded-3 nav-item px-3 py-0 hover">
+                        <a class="nav-link text-dark fw-" asp-area="" asp-controller="Autheticate"
+                        asp-action="Logout">Logout
+                        </a>
+                        </button> *@
+                            <a asp-action="UserProfile" asp-controller="Profile">
+                                <span class="rounded-circle cursor-pointer"
+                                    style="border: 1.5px solid black  ; border-radius: 45px;">
+                                    <img src="~/images/profileImages/@HttpContextAccessor.HttpContext.Session.GetString("ProfileImage")"
+                                        alt="Profile Image" class="rounded-circle border-1 border-dark" height="50" />
+                                </span>
+                            </a>
                         }
                         else
                         {
@@ -90,16 +149,17 @@
                         }
                     </ul>
                 </div>
+
             </div>
         </nav>
 
 
     </header>
-  
+
     <div class="container">
-        
+
         <main role="main" class="pb-3">
-            
+
             @RenderBody()
         </main>
     </div>
@@ -107,7 +167,7 @@
     <footer class="border-top footer text-muted">
         <div class="container text-center">
             &copy; 2024 - EduHub Made with ❤️ By DevNishant</a>
-            
+
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

@@ -33,6 +33,7 @@ namespace Test_EduHub.Models
         public DbSet<AllFeedbackModel> allFeedbackModels {get;set;}
         public DbSet<DetailedFeedbackModel> detailedFeedbackModels {get;set;}
         public DbSet<PreviousEnrollmentModel> previousEnrollmentModels {get;set;}
+        public DbSet<ProfileViewModel> profileViewModels {get;set;}
 
     }
 }
