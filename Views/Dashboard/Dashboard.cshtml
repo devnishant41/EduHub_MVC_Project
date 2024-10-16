@@ -1,6 +1,6 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-<h3>Welcome... @HttpContextAccessor.HttpContext.Session.GetString("LoggedUserName") !! </h3>
+<h3>Welcome To EduHub... @HttpContextAccessor.HttpContext.Session.GetString("LoggedUserName") !!👋 </h3>
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -53,10 +53,10 @@
                 <div class="col-sm-6 ">
                     <ul class="list-group list-group-flush gap-3 fs-5 text-primary">
                         <li class="list-group-item text-decoration-none"> <a asp-controller="Course" asp-action="GetAllCourses"
-                                class="text-decoration-none ">Courses Library</a>
+                                class="text-decoration-none ">Course Library</a>
                         </li>
                         <li class="list-group-item text-decoration-none"> <a asp-controller="Student" asp-action="GetStudentEnrolledCourses"
-                                class="text-decoration-none">My Enrollments </a> </li>
+                                class="text-decoration-none">My Enrolled Courses </a> </li>
                         <li class="list-group-item text-decoration-none"> <a asp-controller="Course"
                                 asp-action="GetAllEnrollments" class="text-decoration-none ">Enroll for New Course </a>
                         </li>

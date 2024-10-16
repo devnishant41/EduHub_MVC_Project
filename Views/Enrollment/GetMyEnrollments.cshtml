@@ -45,7 +45,7 @@
                 @foreach (var enrollment in Model)
                 {
                     <tr>
-                        <td>@enrollment.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+                        <td>@enrollment.EnrollmentDate.ToString("dd-MMMM-yyyy")</td>
                         <td>@enrollment.Title</td>
                         <td>@enrollment.FirstName @enrollment.LastName</td>
                         <td>@enrollment.Status</td>
@@ -64,7 +64,7 @@
                 }
             </tbody>
         </table>
-        <a asp-action="Dashboard" asp-controller="Dashboard" class="">Back to Home</a>
+        <a asp-action="Dashboard" asp-controller="Dashboard" class="">Back to Dashboard</a>
     </div>
 
    
