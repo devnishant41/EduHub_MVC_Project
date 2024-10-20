@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Test_EduHub.Models;
+using Test_EduHub.Models.Combined;
 using Test_EduHub.Models.Domain;
 
 namespace Test_EduHub.Repositories.Abstract
@@ -31,6 +32,8 @@ namespace Test_EduHub.Repositories.Abstract
 
         // student
         IEnumerable<AllCoursesViewModel> GetEnrolledCoursesByStudentId(int id);
+
+        IEnumerable <CourseReviewModel> GetCourseReviews(int id);
 
 
     }

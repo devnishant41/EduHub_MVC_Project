@@ -39,8 +39,6 @@ namespace Test_EduHub.Controllers
         {
             // int userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
             var feedbacks = _feedbackRepository.GetListOfFeedbackByCourseId(id);
-
-
             return View(feedbacks);
         }
 

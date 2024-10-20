@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Test_EduHub.Models.Combined;
 using Test_EduHub.Models.Domain;
 using Test_EduHub.Models.Domain.Enrollments;
 using Test_EduHub.Models.DTO;
@@ -34,6 +35,7 @@ namespace Test_EduHub.Models
         public DbSet<DetailedFeedbackModel> detailedFeedbackModels {get;set;}
         public DbSet<PreviousEnrollmentModel> previousEnrollmentModels {get;set;}
         public DbSet<ProfileViewModel> profileViewModels {get;set;}
+        public DbSet<CourseReviewModel> courseReviewModels {get;set;}
 
     }
 }

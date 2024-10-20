@@ -109,6 +109,8 @@ namespace Test_EduHub.Controllers
             await _courseservice.DeleteCourseAsync(id);
             return RedirectToAction("GetMyCourses", "Educator");
         }
+
+       
     }
 
 }

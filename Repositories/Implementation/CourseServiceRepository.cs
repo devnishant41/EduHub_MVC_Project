@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Test_EduHub.Models;
+using Test_EduHub.Models.Combined;
 using Test_EduHub.Models.Domain;
 using Test_EduHub.Repositories.Abstract;
 
@@ -122,6 +123,10 @@ namespace Test_EduHub.Repositories.Implementation
             _context.SaveChanges();
         }
 
+        public IEnumerable<CourseReviewModel> GetCourseReviews(int id)
+        {
+            return _context.courseReviewModels.FromSqlInterpolated($"dbo.sp_getReviewsByCourseId").ToList();
 
+        }
     }
 }
