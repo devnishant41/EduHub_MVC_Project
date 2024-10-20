@@ -48,10 +48,17 @@ namespace Test_EduHub.Controllers
 
             var materials = _materialservice.GetMaterialByCourseId(id);
 
+            var courseReviews = _courseservice.GetCourseReviews(id);
+            // foreach (var item in courseReviews)
+            // {
+            //     Console.WriteLine($"{item.Feedback}");
+
+            // }
             var viewModel = new CourseMaterialViewModel
             {
                 courseDetailsViewModel = course,
-                Materials = materials
+                Materials = materials,
+                CourseReviews = courseReviews
             };
 
             return View(viewModel);
@@ -110,7 +117,7 @@ namespace Test_EduHub.Controllers
             return RedirectToAction("GetMyCourses", "Educator");
         }
 
-       
+
     }
 
 }

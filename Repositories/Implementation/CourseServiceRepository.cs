@@ -125,7 +125,7 @@ namespace Test_EduHub.Repositories.Implementation
 
         public IEnumerable<CourseReviewModel> GetCourseReviews(int id)
         {
-            return _context.courseReviewModels.FromSqlInterpolated($"dbo.sp_getReviewsByCourseId").ToList();
+            return _context.courseReviewModels.FromSqlInterpolated($"dbo.sp_getReviewsByCourseId {id}").ToList();
 
         }
     }

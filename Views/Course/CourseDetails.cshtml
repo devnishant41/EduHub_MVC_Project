@@ -1,6 +1,7 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model Test_EduHub.Models.Combined.CourseMaterialViewModel
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 @{
     ViewData["Title"] = "Course Details";
 }
@@ -40,24 +41,24 @@
                     }
                     else if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "Student")
                     {
-                         <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end">
                             <a asp-action="RaiseEnquiry" asp-controller="Enquiry" asp-route-id="@course.Id"
                                 class="btn btn-primary me-2">Raise Enquiry</a>
-                           
+
                         </div>
                     }
                 </div>
             </div>
-       @if (course.UserId == Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserId")) &&
-                   HttpContextAccessor.HttpContext.Session.GetString("Role") == "Educator")
-                   {
-            <h3>
-                <a class="btn btn-link" data-toggle="collapse" href="#materials-@course.Id" role="button"
-                    aria-expanded="false" aria-controls="materials-@course.Id">
-                    View Materials
-                </a>
-            </h3>
-                   }
+            @if (course.UserId == Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("UserId")) &&
+           HttpContextAccessor.HttpContext.Session.GetString("Role") == "Educator")
+            {
+                <h3>
+                    <a class="btn btn-link" data-toggle="collapse" href="#materials-@course.Id" role="button"
+                        aria-expanded="false" aria-controls="materials-@course.Id">
+                        View Materials
+                    </a>
+                </h3>
+            }
             <div class="collapse" id="materials-@course.Id">
                 @{
                     var courseMaterials = Model.Materials.Where(m => m.Courseid == course.Id).ToList();
@@ -98,6 +99,58 @@
                 }
             </div>
         </div>
+        <div>
+            @* reviews view *@
+<h3 class="mb-4">Reviews : ⭐⭐</h3>
+
+        @{
+    var CourseReviews = Model.CourseReviews.ToList();
+}
+
+@if (CourseReviews.Any())
+{
+    <div id="feedbackCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover">
+        <div class="carousel-inner">
+            @for (int i = 0; i < CourseReviews.Count; i += 2) // Increment by 2
+            {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="row">
+                        @for (int j = 0; j < 2; j++) // Inner loop for two cards
+                        {
+                            if (i + j < CourseReviews.Count) // Check to avoid out of bounds
+                            {
+                                var feedback = CourseReviews[i + j];
+                                <div class="col-md-6"> <!-- Each card takes half the width -->
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <p class="card-title">"@feedback.Feedback"</p>
+                                            <h5 class="card-text">@feedback.FirstName @feedback.LastName</h5>
+                                            <p class="card-date">Date: @feedback.Date.ToString("yyyy-MM-dd")</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev" href="#feedbackCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#feedbackCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+}
+
+            
+        </div>
+
+
+
     }
 </div>
 
