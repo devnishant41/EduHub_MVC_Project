@@ -2,43 +2,72 @@
     ViewData["Title"] = "Home Page";
 }
 
-  @section Scripts {
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    var successMessage = '@TempData["SuccessMessage"]';
-                    if (successMessage) {
-                        Toastify({
-                            text: successMessage,
-                            duration: 3000,
-                            close: true,
-                            gravity: "top",
-                            position: "center",
-                            backgroundColor: "#4361ee",
-                            stopOnFocus: true
-                        }).showToast();
-                    }
-                });
-            </script>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var successMessage = '@TempData["SuccessMessage"]';
+            if (successMessage) {
+                Toastify({
+                    text: successMessage,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#4361ee",
+                    stopOnFocus: true
+                }).showToast();
+            }
+        });
+    </script>
 }
-<div class="container">
 
-    <div class="text-center">
-        <h1 class="display-6 fw-light p-4">Empower Your Future with Coding Skills </h1>
+<style>
+    .hero-section {
+        background-color: #f8f9fa;
+        padding: 5rem 0;
+        margin-bottom: 3rem;
+    }
 
-        <p>With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to
-            a
-            wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.</p>
+    .hero-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
+
+    .btn-custom {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container-fluid p-0">
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+                    <h1 class="display-4 fw-bold mb-4">Empower Your Future with Coding Skills</h1>
+                    <p class="lead mb-4">With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.</p>
+                    <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+                        <a class="btn btn-primary btn-custom" asp-area="" asp-controller="Autheticate" asp-action="LoginForm">Learn More</a>
+                        <a class="btn btn-outline-primary btn-custom" asp-area="" asp-controller="Autheticate" asp-action="SignupForm">Book a Demo</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="~/images/teaching.jpg" alt="Coding Education" class="hero-image img-fluid" />
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class=" d-flex  justify-content-center gap-4 mt-5">
-        <button class="bg-primary  rounded-2 ">
-            <a class="nav-link text-light" asp-area="" asp-controller="Autheticate" asp-action="LoginForm">Learn
-                More</a>
-        </button>
-        <button class="bg-primary  rounded-2 ">
-            <a class="nav-link text-light" asp-area="" asp-controller="Autheticate" asp-action="SignupForm">Book a
-                Demo</a>
-        </button>
-    </div>
-
 </div>

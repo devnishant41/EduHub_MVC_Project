@@ -1,85 +1,152 @@
-<div class="container mt-5">
-    <h1 class="text-center">About EduHub</h1>
-    <p class="lead text-center">Driving Innovation in Online Education for a Brighter Future</p>
-    <p class="text-center">EduHub is at the forefront of driving innovation in online education. We're passionate
-        about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and
-        nurturing a vibrant learning community.</p>
+@{
+    ViewData["Title"] = "About EduHub";
+}
 
-    <h2 class="mt-5">Our Founding Story</h2>
-    <p>Our e-learning platform was born out of a shared vision and passion for transforming education. It all began
-        with a group of educators, technologists, and lifelong learners who recognized the need for accessible,
-        flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
+<style>
+    .about-section {
+        background-color: #f8f9fa;
+        padding: 4rem 0;
+    }
 
-    <h2>Our Vision</h2>
-    <p>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize
-        the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive
-        platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive
-        learning experience.</p>
+    .section-title {
+        color: #333;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
 
-    <h2>Our Mission</h2>
-    <p>Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners,
-        where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in
-        an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live
-        sessions, and networking opportunities.</p>
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        height: 4px;
+        width: 50px;
+        background-color: #007bff;
+    }
 
-    <h2>Key Statistics</h2>
-    <ul class="list-group mb-5">
-        <li class="list-group-item">5K Active Students</li>
-        <li class="list-group-item">10+ Mentors</li>
-        <li class="list-group-item">200+ Courses</li>
-        <li class="list-group-item">50+ Awards</li>
-    </ul>
+    .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
 
+    .stat-item:hover {
+        transform: translateY(-5px);
+    }
 
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #007bff;
+    }
 
-    <h2>Reviews from other learners</h2>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Excellent Learning Experience</h5>
-                    <p class="card-text">I've had an excellent learning experience with EduHub. The courses are
-                        well-structured and the instructors are knowledgeable.</p>
+    .review-card {
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .social-icon {
+        color: #007bff;
+        transition: color 0.3s ease;
+    }
+
+    .social-icon:hover {
+        color: #0056b3;
+    }
+</style>
+
+<div class="about-section">
+    <div class="container">
+        <h1 class="text-center section-title">About EduHub</h1>
+        <p class="lead text-center mb-5">Driving Innovation in Online Education for a Brighter Future</p>
+        <p class="text-center mb-5">EduHub is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <h2 class="section-title">Our Founding Story</h2>
+                <p>Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h2 class="section-title">Our Vision</h2>
+                <p>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
+            </div>
+        </div>
+
+        <h2 class="text-center section-title">Our Mission</h2>
+        <p class="text-center mb-5">Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.</p>
+
+        <h2 class="text-center section-title">Key Statistics</h2>
+        <div class="row mb-5">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-item">
+                    <div class="stat-number">5K+</div>
+                    <div>Active Students</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div>Mentors</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div>Courses</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div>Awards</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Great Support Team</h5>
-                    <p class="card-text">The support team at EduHub is great. They're always available to help with
-                        any questions or issues I have.</p>
+
+        <h2 class="text-center section-title">Reviews from Learners</h2>
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card review-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Excellent Learning Experience</h5>
+                        <p class="card-text">I've had an excellent learning experience with EduHub. The courses are well-structured and the instructors are knowledgeable.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card review-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Great Support Team</h5>
+                        <p class="card-text">The support team at EduHub is great. They're always available to help with any questions or issues I have.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card review-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Variety of Courses</h5>
+                        <p class="card-text">EduHub offers a wide variety of courses, which is great for someone like me who wants to learn new skills.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Variety of Courses</h5>
-                    <p class="card-text">EduHub offers a wide variety of courses, which is great for someone like me
-                        who wants to learn new skills.</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
-    <h2 class="mt-5">Follow Us</h2>
-    <div class="row">
-        <div class="col-md-2">
-            <a href="#" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+        <h2 class="text-center section-title">Follow Us</h2>
+        <div class="d-flex justify-content-center mb-5">
+            <a href="#" target="_blank" class="mx-3"><i class="fab fa-facebook fa-2x social-icon"></i></a>
+            <a href="#" target="_blank" class="mx-3"><i class="fab fa-twitter fa-2x social-icon"></i></a>
+            <a href="#" target="_blank" class="mx-3"><i class="fab fa-instagram fa-2x social-icon"></i></a>
+            <a href="#" target="_blank" class="mx-3"><i class="fab fa-linkedin fa-2x social-icon"></i></a>
+            <a href="#" target="_blank" class="mx-3"><i class="fab fa-youtube fa-2x social-icon"></i></a>
         </div>
     </div>
 </div>

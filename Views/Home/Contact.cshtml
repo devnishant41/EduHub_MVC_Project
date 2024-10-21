@@ -1,56 +1,120 @@
+@{
+    ViewData["Title"] = "Contact Us";
+}
 
-    <div class="container mt-5">
-        <h1 class="text-center">Get in Touch</h1>
-        <p class="lead text-center">We'd love to hear from you! Please fill out this form:</p>
+<style>
+    .contact-section {
+        background-color: #f8f9fa;
+        padding: 4rem 0;
+    }
 
-        <form>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea class="form-control" id="message" rows="3" placeholder="Enter your message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Send Message</button>
-        </form>
+    .section-title {
+        color: #333;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
 
-        <h2 class="mt-5">Our Address</h2>
-        <p>123 Main St, Anytown, USA 12345</p>
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        height: 4px;
+        width: 50px;
+        background-color: #007bff;
+    }
 
-        <h2>Phone Numbers</h2>
-        <ul class="list-group mb-5">
-            <li class="list-group-item">Phone: 555-555-5555</li>
-            <li class="list-group-item">Fax: 555-555-5556</li>
-        </ul>
+    .contact-form {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        <h2>Email Addresses</h2>
-        <ul class="list-group mb-5">
-            <li class="list-group-item">info@eduhub.com</li>
-            <li class="list-group-item">support@eduhub.com</li>
-        </ul>
+    .contact-info {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        <h2>Follow Us</h2>
+    .social-icon {
+        color: #007bff;
+        transition: color 0.3s ease;
+        margin-right: 1rem;
+    }
+
+    .social-icon:hover {
+        color: #0056b3;
+    }
+
+    .btn-submit {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 0.5rem 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="contact-section">
+    <div class="container">
+        <h1 class="text-center section-title">Get in Touch</h1>
+        <p class="lead text-center mb-5">We'd love to hear from you! Please fill out this form:</p>
+
         <div class="row">
-            <div class="col-md-2">
-                <a href="#" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+            <div class="col-lg-6 mb-4">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit mt-3">Send Message</button>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="#" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+            <div class="col-lg-6">
+                <div class="contact-info">
+                    <h2 class="section-title">Contact Information</h2>
+                    <p><strong>Address:</strong> 123 Main St, Anytown, USA 12345</p>
+                    <p><strong>Phone:</strong> 555-555-5555</p>
+                    <p><strong>Fax:</strong> 555-555-5556</p>
+                    <p><strong>Email:</strong> info@eduhub.com, support@eduhub.com</p>
+
+                    <h3 class="mt-4 mb-3">Follow Us</h3>
+                    <div>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="#" target="_blank" class="social-icon"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="#" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-            </div>
-            <div class="col-md-2
+        </div>
+    </div>
+</div>
